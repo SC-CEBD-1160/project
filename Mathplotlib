@@ -1,0 +1,51 @@
+from sklearn.datasets import load_wine
+import pandas as pd
+import matplotlib.pyplot as plt
+import os
+
+
+# make it a cvs
+data = load_wine()
+
+df = pd.DataFrame(data=data['data'],
+                    columns= data['feature_names'])
+
+plt.title('Linear Plot')
+plt.xlabel('Index                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ')
+plt.ylabel('Linear Y')
+
+fig, axes = plt.subplots(2, figsize=(5, 5))
+
+axes[0].scatter(df['alcohol'], df['ash'], label=f'Alcohol to ash', color='red', marker='o', alpha=0.7)
+axes[1].scatter(df['hue'], df['ash'], label=f'hue to ash', color='blue', marker='_', alpha=0.7)
+
+# fig, axes = plt.subplots(1, 1, figsize=(5, 5))
+#
+# axes.scatter(df['alcohol'], df['malic_acid'], s=(df['color_intensity']) ** 2.5,
+#              label=f'Alcohol to Malic Acid', color='orange', marker='o', edgecolors='w', alpha=0.7)
+#
+# axes.set_xlabel(f'Alcohol')
+# axes.set_ylabel(f'Malic Acid')
+# axes.set_title(f'Alcohol, Malic Acid and Color Intensity (Size)')
+
+axes[1].legend()
+
+os.makedirs('plots', exist_ok=True)
+
+# plt.plot(wine['alcohol'], color='blue')
+# plt.title('Alcohol by Index')
+# plt.xlabel('Index')
+# plt.ylabel('Alcohol')
+#
+# plt.scatter(wine['hue'], wine['color_intensity'], color='r', alpha=0.5, marker='_')
+# plt.title('Hue to Color Intensity')
+# plt.xlabel('Hue')
+# plt.ylabel('Color Intensity')
+#
+# plt.show()
+
+plt.savefig(f'plots/two_charts.png', format='png')
+
+plt.show()
+
+plt.close()
