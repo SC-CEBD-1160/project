@@ -10,6 +10,8 @@ import numpy as np
 import pandas as pd
 from sklearn.datasets import load_wine
 from sklearn.metrics import f1_score
+import seaborn as sea
+import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 
 # performance print results
@@ -75,9 +77,78 @@ data = load_wine()
 df = pd.DataFrame(data=data['data'],
                   columns=data['feature_names'])
 
+
 # -----------------------------------------------
-# 2- classification regression on the wine dataset
+# 1- visualization of the wine dataset correlation
+# -----------------------------------------------
+# sea.set()
+#
+# fig, ax = plt.subplots(figsize=(20,20))
+# sea.heatmap(df.corr(), annot=True, cmap='summer')
+# ax.set_xticklabels(df.columns)
+# ax.set_yticklabels(df.columns)
+# plt.savefig('plots//wine_correlation_heatmap.png')
+#
+# plt.clf()
+
+
+# -----------------------------------------------
+# 2- cleanup of the wine dataset, extracting data
 # -----------------------------------------------
 
-for column in df.columns:
-    removeColumn(df, column)
+correlation_list = []
+positions = []
+i = 0
+j = 0
+
+for x in df.corr().values:
+    for y in x:
+        if y < 0.1 and y > -0.1:
+            if y not in correlation_list:
+                correlation_list.append(y)
+                position = (i, j)
+                positions.append(position)
+        x = x + 1
+        j = j + 1
+    j = 0
+    i = i + 1
+print("------------------------------------------------------------------")
+print(correlation_list) #values
+print(positions)        #tuples
+
+corr = df.corr()
+
+# get matches
+print("------------------------------------------------------------------")
+for pos in positions:
+    print(corr.columns.values[pos[0]], " and ", corr.index.values[pos[1]])
+
+# iterate over list of tuples to identify the most prevalent feature
+count = [0] * corr.columns.values.size
+for feature in positions:
+    # count feature
+    count[feature[0]] += 1
+    count[feature[1]] += 1
+
+# print the results
+print("------------------------------------------------------------------")
+matches = []
+column_position = 0
+for entry in count:
+    print(corr.columns.values[column_position], "has count of", entry)
+    match = (entry, corr.columns.values[column_position])
+    matches.append(match)
+    column_position += 1
+
+#order by count
+matches.sort(key=lambda tup: tup[0], reverse=True)
+
+# we have a sorted list of tuples with count and column name for the less correlated entries
+print(matches)
+
+# -----------------------------------------------
+# 3- classification regression on the wine dataset
+# -----------------------------------------------
+
+# for column in df.columns:
+#     removeColumn(df, column)
