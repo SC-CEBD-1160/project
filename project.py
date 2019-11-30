@@ -278,6 +278,9 @@ print("------------------------------------------------------------------")
 fig, ax = plt.subplots(figsize=(20,10))
 pal = sea.cubehelix_palette(8, rot=-.10, dark=.3)
 ax.set_xticklabels(df.columns, rotation=45)
+ax.set_title('Single feature removal')
+ax.set_xlabel('Feature')
+ax.set_ylabel('f1-score')
 # Show each distribution with both violins and points
 sea.violinplot(data=tsint, palette=pal, inner="points")
 
@@ -318,6 +321,9 @@ print("------------------------------------------------------------------")
 fig, ax = plt.subplots(figsize=(10,10))
 pal = sea.cubehelix_palette(8, rot=-.7, dark=.3)
 ax.set_xticklabels(df.columns, rotation=45)
+ax.set_title('Incremantal feature removal')
+ax.set_xlabel('Feature')
+ax.set_ylabel('f1-score')
 # Show each distribution with both violins and points
 sea.violinplot(data=tsint, palette=pal, inner="points")
 os.makedirs('plots/Violinplots/', exist_ok=True)
@@ -349,7 +355,7 @@ print("------------------------------------------------------------------")
 # getting percent difference between initial and subsequent features
 results = []
 for iter in range(0, 8):
-    results.append(((mean[iter] - mean[0]) / 2) * 100)
+    results.append(((mean[iter] - mean[0])/2) * 100)
 
 print(results)
 
