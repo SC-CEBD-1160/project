@@ -22,7 +22,6 @@ Can the removal (dropping) of features improve the performance of a dataset?
 
 Using the Wine dataset we are trying to demonstrate that the removal of features can sometimes be useful when preparing a dataset.
 By using this dataset and the SVC (linear) estimator we will try and demonstrate that this is possible.
-Based on multiple evaluation of the dataset have found a 0.26 percent increase in performance when removing the combined features of Ash, Proanthocyanins, color_intensity and alcalinity_of_ash.
 
 ### Introduction
 
