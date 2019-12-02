@@ -89,7 +89,7 @@ Final analysis of the overall effects or feature removal can be seen in the foll
 
 ![matrix](./plots/Histogram_percentage_variation_values.png)
 
-We can clearly see an increase of 0.264862 percent in f1-score in regards to the 4 features that were removed. This can seem small but any improvement to the model will gain in accuracy.
+We can clearly see an increase of 0.303435 percent in f1-score in regards to the 4 features that were removed. This can seem small but any improvement to the model will gain in accuracy.
 
 Another observation is that the removal of all of the selected low correlated feature does not negatively impact the accuracy of the model.
 

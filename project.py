@@ -283,7 +283,7 @@ ax.set_xlabel('Feature')
 ax.set_ylabel('f1-score')
 # Show each distribution with both violins and points
 sea.violinplot(data=tsint, palette=pal, inner="points")
-
+plt.tight_layout()
 os.makedirs('plots/Violinplots/', exist_ok=True)
 plt.savefig(f'plots/Violinplots/Single_removal_features.png', dpi=300)
 
@@ -326,6 +326,7 @@ ax.set_xlabel('Feature')
 ax.set_ylabel('f1-score')
 # Show each distribution with both violins and points
 sea.violinplot(data=tsint, palette=pal, inner="points")
+plt.tight_layout()
 os.makedirs('plots/Violinplots/', exist_ok=True)
 plt.savefig(f'plots/Violinplots/Incremental_removal_features.png', dpi=300)
 plt.close()
@@ -344,6 +345,7 @@ axes.set_xticklabels(tsint.columns, rotation=45)
 axes.set_title('Mean value of incremantal feature removal')
 axes.set_xlabel('Feature')
 axes.set_ylabel('f1-score')
+plt.tight_layout()
 mean.plot.bar()
 
 plt.savefig(f'plots/Histogram_mean_values.png', dpi=300)
@@ -359,15 +361,19 @@ for iter in range(0, 8):
 
 print(results)
 
-# new dataframe from the results
+rows = ["ALl", "Ash", "Proanthocyanins", "color_intensity", "alcalinity_of_ash", "od315_of_diluted_wines", "alcohol", "malic_acid"]
 df=pd.DataFrame(data=results)
+df.index = rows
+df.columns = ["Percent variation"]
 print(df)
 
 fig, axes = plt.subplots(1, 1, figsize=(5, 5))
-axes.set_title('Percentage variation of incremental feature removal')
-axes.set_xlabel('Feature')
-axes.set_ylabel('percent variation')
+axes.set_xticklabels(df.index, rotation=45)
 df.plot.bar()
+plt.title('Percentage variation of incremental feature removal')
+plt.xlabel('Feature')
+plt.ylabel('Percent variation')
+plt.tight_layout()
 
 plt.savefig(f'plots/Histogram_percentage_variation_values.png', dpi=300)
 
