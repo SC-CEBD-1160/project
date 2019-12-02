@@ -1,4 +1,4 @@
-# cebd1160: Increasing Overall f1-score by removing features
+# Increasing Overall f1-score by removing features
 
 | Name | Date |
 |:-------|:---------------|
