@@ -43,17 +43,26 @@ The initial methodology used was to do single removal of features and look at th
 ![matrix](.//plots/Violinplots/Single_removal_features.png)
 
 As we can see there are some notable features that seem to increase performance such as proantocyanins, alcalinity_of_ash and magnesium.
-And some that drastically reduces the performance.
+And some that drastically reduces the performance such as proline.
 
-The next step was to automate the feature selection and removal. We chose the correlation values as the base.
+The next step was to automate the feature selection and removal. We chose the correlation values as the base to select the features.
 First we generated the correlation heat map.
 
 ![matrix](.//plots/wine_correlation_heatmap.png)
 
 Rather than trying to find out the best candidates directly from the heatmap, we wrote some algorithm to extract the candidate features.
-We extracted the based on correlation score of between -0.05 and 0.05. Next we gave weight to the features based on the number of occurrence they appeared in the results.
+We extracted the features based on a correlation score of between -0.05 and 0.05. Next we gave weight to the features based on the number of occurrence they appeared in the results.
 
-This gave us the following results
+Here are the correlations that were selected by the algorithm:
+
+| Correlations |
+|:-------|
+| ash  and  proanthocyanins
+| ash  and  od280/od315_of_diluted_wines
+| alcalinity_of_ash  and  color_intensity
+| proanthocyanins  and  color_intensity
+
+This gave us the following results after the weight is applied
 
 | Feature | Weight |
 |:-------|:---------------|
